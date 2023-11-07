@@ -1,0 +1,85 @@
+.cotainer {
+  // use max-width so that the container can decrease if there is no display 120rem;
+  max-width: 120rem;
+  border-radius: var(--border-md);
+  box-shadow: var(--shadow-md);
+  //vertical align
+  margin: 8rem auto;
+  min-height: 50rem;
+  background-color: var(--color-grey-light-1);
+
+  @media only screen and (max-width: $bk-large) {
+    // media query overwrite
+    margin: 0;
+  }
+}
+
+.header {
+  background-color: var(--color-white);
+  min-height: 8rem;
+  //   border-bottom: var(--color-grey-light-2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  @media only screen and (max-width: $bk-medium) {
+    flex-direction: column;
+  }
+}
+
+// compilement to the chief
+
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+  flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.5rem 0 2rem 0;
+
+  @media only screen and (max-width: 56.25em) {
+    padding: 0;
+  }
+}
+
+.hotel-view {
+  background-color: var(--color-white);
+
+  min-height: 80rem; // when content exceeds the external height, let content decides the cotainer height
+  flex-grow: 1;
+}
+
+.detail {
+  //style the box
+  background-color: var(--color-grey-light-1);
+  padding: 4.5rem;
+  display: flex;
+  @media only screen and (max-width: $bk-medium) {
+    padding: 3rem;
+  }
+  @media only screen and (max-width: $bk-small) {
+    flex-direction: column;
+  }
+}
+
+.description {
+  padding: 3rem;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-md);
+  flex: 0 0 69%;
+  margin-right: 2rem;
+  @media only screen and (max-width: $bk-small) {
+    margin-left: 0;
+  }
+}
+
+.user-reviews {
+  flex: 1;
+  //center the button text-align get inherit to all of its child element
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

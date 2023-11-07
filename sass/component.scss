@@ -1,0 +1,479 @@
+// css aritechitecture
+
+// build the header section and perpare our selector and test it apply to expected element
+//  img and icon are too large, start styling them by give them some size , and them align and layout
+// fix the color size and position and spacing
+
+/////////////////////////
+/// LOGO
+.logo {
+  height: 3.25rem;
+  margin-left: 2rem;
+}
+
+/////////////////////////
+/// SEARCH BAR
+.search {
+  //don't want it grow to fill all the available space
+  flex: 0 0 40%;
+
+  // nested flexbox: flex item become the flex cotainer
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    width: 90%;
+    margin-right: -3rem;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-size: inherit;
+    border: none;
+    background-color: var(--color-grey-light-2);
+    transition: all 0.3s;
+
+    &:focus {
+      outline: none;
+      background-color: var(--color-grey-light-3);
+      width: 100%;
+    }
+    &::-webkit-input-placeholder {
+      color: var(--color-grey-light-4);
+    }
+  }
+
+  &__input + &__icon {
+    background-color: var(--color-grey-light-3);
+  }
+
+  &__button {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--color-grey-dark-3);
+  }
+}
+
+/////////////////////////
+/// USER NAV
+.user-nav {
+  //give it a test color, you can not style it unless you see it
+  //   background-color: lawngreen;
+  display: flex;
+  align-self: stretch;
+
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  & > *:hover {
+    background-color: var(--color-grey-light-3);
+  }
+
+  &__icon-box {
+    position: relative;
+  }
+
+  &__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  &__user-notifcation {
+    //心中有构想,再去style
+    position: absolute;
+    top: 1.75rem;
+    right: 1rem;
+    background-color: var(--color-primary);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    color: var(--color-grey-light-2);
+    font-size: 1.4rem;
+
+    //flexbox don't only work  when with child element, it also work
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__user {
+  }
+  &__user-photo {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  &__user-name {
+  }
+}
+
+/////////////////////////
+/// SIDENAV
+
+.side-nav {
+  list-style: none;
+
+  @media only screen and (max-width: 56.25em) {
+    display: flex;
+  }
+
+  &__item {
+    padding: 2rem 3rem;
+    position: relative;
+    @media only screen and (max-width: 56.25em) {
+      flex: 1;
+    }
+  }
+
+  &__item::before {
+    // stage animation with delay
+    content: '';
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    transform: scaleY(0);
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+      background-color 0.2s;
+    position: -1;
+  }
+
+  &__item:hover::before,
+  &__item--active::before {
+    width: 100%;
+    transform: scaleY(1);
+  }
+
+  &__item:acitve::before {
+    background-color: var(--color-primary-light);
+  }
+
+  &__link:link,
+  &__link:visited {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-grey-light-2);
+    position: relative;
+    z-index: 10;
+    @media only screen and (max-width: 56.25em) {
+      justify-content: center;
+    }
+  }
+  &__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: currentColor;
+  }
+  &__text {
+  }
+}
+
+/////////////////////////
+/// COPYRIGHT
+.copyright {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--color-grey-light-4);
+  @media only screen and (max-width: 56.25em) {
+    display: none;
+  }
+}
+///////////////////
+// gallery
+.gallery {
+  display: flex;
+
+  &__photo {
+    width: 100%;
+  }
+}
+
+///////////////////////////
+/// OVERVIEW
+.overview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  border-bottom: var(--line);
+
+  &__heading {
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  &__stars {
+    //sbg element behave like a inline-element, there is like a small space below each of the element
+    display: flex;
+    margin-right: auto;
+  }
+  &__icon-star {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary);
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+  }
+
+  &__icon-location {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  &__rating {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    align-self: stretch;
+    padding: 1rem 1.5rem;
+  }
+
+  &__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  &__rating-count {
+    font-size: 0.8rem;
+  }
+}
+
+///////////////////////
+///  BUTTON
+.btn--inline {
+  // by setting the font-size inherit, make the btn more modular and rususable
+  font-size: inherit;
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  border-bottom: 1px solid currentColor;
+  padding: 2px;
+  transition: all 0.2s;
+
+  & span {
+    margin-left: 3px;
+    transition: margin-lefts 0.3s;
+  }
+
+  &:hover {
+    color: var(--color-grey-dark-2);
+
+    & span {
+      margin-left: 8px;
+    }
+  }
+}
+
+///////////////////////
+///  DETAIL
+
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+///////////////////////
+///  LIST
+.list {
+  padding: 3rem 0;
+  margin: 3rem 0;
+  border-top: 1px solid var(--color-grey-light-2);
+  border-bottom: 1px solid var(--color-grey-light-2);
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  &__item {
+    width: 50%;
+  }
+
+  &__item::before {
+    content: '';
+    display: inline-block; //otherweise the width of the element only determine by intrinic wdith not extrinc width
+    width: 2rem;
+    height: 2rem;
+    // background-image: url('../img/chevron-thin-right.svg'); for older browser
+    //add feature query if mask property not support
+
+    //mask define a area where we can look through a element and see what's behind a element
+    background-color: var(--color-primary);
+    -webkit-mask-image: url('../img/chevron-thin-right.svg');
+    -webkit-mask-size: cover;
+  }
+}
+
+///////////////////////
+///  RECOMMEND
+.recommend {
+  display: flex;
+  align-items: center;
+  &__count {
+  }
+
+  &__friends {
+  }
+
+  &__photo {
+    //box-sizing border-box include the padding and the border into the extrinic height and width
+    //that's usually the situatiion that we want
+    // in this situation we want to the border to be add on top of our width and height
+    box-sizing: content-box;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 3px solid var(--color-white);
+  }
+
+  &__photo:not(:last-child) {
+    // give negative right margin to create overlap effect
+
+    margin-right: -1.75rem;
+  }
+}
+
+///////////////////////
+///  REVIEW
+.review {
+  font-size: 1.4rem;
+  padding: 3rem;
+  box-shadow: var(--shadow-light);
+  margin-bottom: 3rem;
+  background-color: var(--color-white);
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+
+  &__text {
+    margin-bottom: 2rem;
+    z-index: 10;
+    position: relative;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+  &__user-box {
+    margin-right: auto;
+  }
+
+  &__user-name {
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  &__user-date {
+    font-size: 1.1rem;
+    color: var(--color-grey-light-4);
+  }
+
+  &__photo {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  &__rating {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--color-primary);
+  }
+
+  &::before {
+    content: '\201C';
+    position: absolute;
+    font-family: sans-serif;
+    top: -3rem;
+    left: -3.5rem;
+    color: var(--color-grey-light-2);
+    font-size: 25rem;
+    z-index: 1;
+  }
+}
+
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+  &__book-now {
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+}
+
+.btn {
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  color: var(--color-white);
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+
+  & > * {
+    transition: all 0.3s;
+  }
+
+  &__invisible {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -100%;
+
+    padding: 2rem 0;
+    left: 0;
+  }
+  &__visible {
+    padding: 2rem 7.5rem;
+    display: inline-block;
+  }
+
+  &:hover {
+    background-image: linear-gradient(
+      to left,
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+  }
+
+  &:hover &__invisible {
+    top: 0;
+  }
+  &:hover &__visible {
+    transform: translateY(100%);
+  }
+}
